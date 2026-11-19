@@ -1,11 +1,13 @@
 # 표지 지시문 — ∇ 특별편 (vector_calculus_lab)
 
-> 판 L: 16:9, 가로 1920 이상 → 빌드 WebP 1600×900(220 KB 이하). 그림 안 글자·숫자·로고 금지.
+> **그림체: 16비트 RPG 픽셀아트(연구실 스킬 공통 스타일).** 판 L: 16:9, 가로 1920 이상 → 빌드 WebP 1600×900(220 KB 이하). 그림 안 글자·숫자·로고 금지.
 > 참고 이미지: 네 캐릭터 기본 그림 4장 + 시아·모아 기본 그림 2장 (GitHub `adminmrobo/fruitfly-lab-expressions`).
 > **목차 표지(cover_index)를 먼저 받아 그림체를 확인한 뒤**, 나머지 요청에 그 표지를 참고 그림으로 함께 올린다.
 > 받은 그림은 `assets/cover/cover_{키}.webp`로 넣고, 각 페이지 `data-img="cover_{키}"` 자리에 반영한다(18-15).
 
 ## 공통 영어 조각
+
+- **공통 스타일 (모든 표지 맨 앞에):** 16-bit RPG style pixel art, bold dark outline, 2–3 tone shading, small highlights, consistent with the reference images
 
 - **Doctor:** chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie
 - **Assistant (Haru):** girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans
@@ -34,12 +36,14 @@
 ```
 웹페이지 맨 위에 거는 표지 그림 1장을 만들어 줘.
 - 비율 16:9, 가로 1920px 이상
+- 그림체는 16비트 RPG 픽셀아트(굵은 어두운 외곽선, 2~3단 명암, 작은 하이라이트)
 - 첨부한 참고 이미지의 캐릭터(박사, 조수, 초파리 연구원, 주판봇)를 같은 그림체·같은 외형으로, 넷 모두 등장
 - 그림 안에 글자·숫자·로고를 넣지 말 것
 - 얼굴과 손은 가장자리에서 떨어진 가운데 영역에, 왼쪽 아래 구석은 밝고 단순하게
 아래 영어 프롬프트를 그대로 써 줘.
 
 Website top cover illustration, wide 16:9.
+16-bit RPG style pixel art, bold dark outline, 2–3 tone shading, small highlights, consistent with the reference images.
 Match the art style, proportions and colors of the attached reference images exactly.
 Scene: {장소 영어}.
 All four characters together: {Doctor}, standing at the back center pointing at the prop; {Assistant}, at one side holding a clipboard; {Fruit fly researcher}, curious; {Jupanbot}, confident.
@@ -60,4 +64,4 @@ The light falls on {핵심 소품}.
 - **cover_06:** Scene: a factory visitor room with a scale model of a cement kiln. Metaphor: a warm color gradient spreading along the kiln model, and conveyor belts shaped like in-and-out arrows.
 - **cover_07:** Scene: a fish market sorting table with a small conveyor. Metaphor: fish on the conveyor under a transparent bowl formed by three glowing axes. Sia and Moa cheer in the background (last episode).
 
-**고칠 때 (같은 대화에서):** `Same characters, same art style and composition. Change only: {고칠 점}. Still no text.`
+**고칠 때 (같은 대화에서):** `Same four characters, same 16-bit pixel art style and composition. Change only: {고칠 점}. Still no text.`

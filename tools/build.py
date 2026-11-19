@@ -47,7 +47,7 @@ def nav(pg):
 
 def cover(pg):
     title = pg['title']
-    who = pg.get('cover_cast', [('doc', 'front'), ('asst', 'smile'), ('fly', 'point'), ('robo', 'smile')])
+    who = pg.get('cover_cast', [('fly', 'point'), ('doc', 'front'), ('asst', 'smile'), ('robo', 'smile')])
     return f'''<div class="cover" id="cover"><div class="frame" data-img="cover_{pg['key']}">
 <svg class="bgfield" viewBox="0 0 160 90" preserveAspectRatio="xMidYMid slice" aria-hidden="true">{bgfield(pg.get('cover_field','grad'))}</svg>
 <div class="ttl"><span>{E(pg['kicker'])}</span><b>{title}</b></div>
