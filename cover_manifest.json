@@ -1,0 +1,425 @@
+{
+  "series_ko": "좌표축 위의 그릇 · ∇ 특별편",
+  "title_ko": "∇ 특별편 — 화살표 하나로 보는 미분·적분과 다섯 현장",
+  "site_title": "∇ 특별편 — 화살표 하나로 보는 미분·적분과 다섯 현장",
+  "site_url": "https://adminmrobo.github.io/vector_calculus_lab/",
+  "ontology": {
+    "pages": [
+      {
+        "path": "index.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "00_orientation.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "01_differential.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "02_integral.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "03_machine_learning.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "04_deep_learning.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "05_rendering.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "06_factory.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "07_fish_market.html",
+        "kg": true,
+        "export": true
+      }
+    ],
+    "files": []
+  },
+  "i18n": {
+    "langs": [
+      "ko"
+    ],
+    "pages": {
+      "ko": 9
+    },
+    "readme_langs": [
+      "ko"
+    ]
+  },
+  "languages": [
+    "ko"
+  ],
+  "items": [
+    {
+      "id": "cover_index",
+      "role": "cover",
+      "embedded_in": "index.html",
+      "key": ".cover .frame[data-img=\"cover_index\"]",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": "Website top cover illustration, wide 16:9. Match the art style of the attached reference images exactly. Scene: a bright laboratory corridor with eight plain doors without numbers. Metaphor: softly glowing arrow patterns on the floor like a field of arrows. Add Sia and Moa walking in the background. All four characters together: chibi scientist with thin teal rectangular glasses and spiky black hair with one white streak, white lab coat over black vest and tie; girl researcher with long pink hair in two round buns and a navy streak, white lab coat over lavender hoodie; anthropomorphic fruit fly researcher with big red compound eyes and a blue helmet, on the left facing right; boxy beige retro CRT-monitor robot with a dark green screen face and an abacus-bead antenna, on the right facing left. Composition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple. Mood: curious, friendly rivalry, the moment before the result. Bright daytime lab, white walls. No text, no letters, no numbers, no logos.",
+      "source_of": null,
+      "status": "redraw"
+    },
+    {
+      "id": "og_index",
+      "role": "og",
+      "path": "assets/og/index.jpg",
+      "size": [
+        1200,
+        675
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": null,
+      "source_of": "cover_index",
+      "status": "redraw"
+    },
+    {
+      "id": "cover_00",
+      "role": "cover",
+      "embedded_in": "00_orientation.html",
+      "key": ".cover .frame[data-img=\"cover_00\"]",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": "Website top cover illustration, wide 16:9. Match the art style of the attached reference images exactly. Scene: a small seminar table in front of a chalkboard. Metaphor: one smooth curve drawn on the board with a glowing ruler touching it at a single point (tangent). Sia stands beside the board as a guide. All four characters together: chibi scientist with thin teal rectangular glasses and spiky black hair with one white streak, white lab coat over black vest and tie; girl researcher with long pink hair in two round buns and a navy streak, white lab coat over lavender hoodie; anthropomorphic fruit fly researcher with big red compound eyes and a blue helmet, on the left facing right; boxy beige retro CRT-monitor robot with a dark green screen face and an abacus-bead antenna, on the right facing left. Composition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple. Mood: curious, friendly rivalry, the moment before the result. Bright daytime lab, white walls. No text, no letters, no numbers, no logos.",
+      "source_of": null,
+      "status": "redraw"
+    },
+    {
+      "id": "og_00",
+      "role": "og",
+      "path": "assets/og/00.jpg",
+      "size": [
+        1200,
+        675
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": null,
+      "source_of": "cover_00",
+      "status": "redraw"
+    },
+    {
+      "id": "cover_01",
+      "role": "cover",
+      "embedded_in": "01_differential.html",
+      "key": ".cover .frame[data-img=\"cover_01\"]",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": "Website top cover illustration, wide 16:9. Match the art style of the attached reference images exactly. Scene: a large tabletop terrain model of a hill. Metaphor: tiny arrow flags planted on the hill pointing uphill, and one small pinwheel spinning on the side. All four characters together: chibi scientist with thin teal rectangular glasses and spiky black hair with one white streak, white lab coat over black vest and tie; girl researcher with long pink hair in two round buns and a navy streak, white lab coat over lavender hoodie; anthropomorphic fruit fly researcher with big red compound eyes and a blue helmet, on the left facing right; boxy beige retro CRT-monitor robot with a dark green screen face and an abacus-bead antenna, on the right facing left. Composition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple. Mood: curious, friendly rivalry, the moment before the result. Bright daytime lab, white walls. No text, no letters, no numbers, no logos.",
+      "source_of": null,
+      "status": "redraw"
+    },
+    {
+      "id": "og_01",
+      "role": "og",
+      "path": "assets/og/01.jpg",
+      "size": [
+        1200,
+        675
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": null,
+      "source_of": "cover_01",
+      "status": "redraw"
+    },
+    {
+      "id": "cover_02",
+      "role": "cover",
+      "embedded_in": "02_integral.html",
+      "key": ".cover .frame[data-img=\"cover_02\"]",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": "Website top cover illustration, wide 16:9. Match the art style of the attached reference images exactly. Scene: a lab bench with a transparent glass box. Metaphor: rays of light rising inside the box and passing out through its faces, and a ring of light circling the rim of a round disk. All four characters together: chibi scientist with thin teal rectangular glasses and spiky black hair with one white streak, white lab coat over black vest and tie; girl researcher with long pink hair in two round buns and a navy streak, white lab coat over lavender hoodie; anthropomorphic fruit fly researcher with big red compound eyes and a blue helmet, on the left facing right; boxy beige retro CRT-monitor robot with a dark green screen face and an abacus-bead antenna, on the right facing left. Composition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple. Mood: curious, friendly rivalry, the moment before the result. Bright daytime lab, white walls. No text, no letters, no numbers, no logos.",
+      "source_of": null,
+      "status": "redraw"
+    },
+    {
+      "id": "og_02",
+      "role": "og",
+      "path": "assets/og/02.jpg",
+      "size": [
+        1200,
+        675
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": null,
+      "source_of": "cover_02",
+      "status": "redraw"
+    },
+    {
+      "id": "cover_03",
+      "role": "cover",
+      "embedded_in": "03_machine_learning.html",
+      "key": ".cover .frame[data-img=\"cover_03\"]",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": "Website top cover illustration, wide 16:9. Match the art style of the attached reference images exactly. Scene: a big bowl-shaped slide model. Metaphor: a glowing marble rolling down the inner wall toward the bottom, leaving a faint trail. All four characters together: chibi scientist with thin teal rectangular glasses and spiky black hair with one white streak, white lab coat over black vest and tie; girl researcher with long pink hair in two round buns and a navy streak, white lab coat over lavender hoodie; anthropomorphic fruit fly researcher with big red compound eyes and a blue helmet, on the left facing right; boxy beige retro CRT-monitor robot with a dark green screen face and an abacus-bead antenna, on the right facing left. Composition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple. Mood: curious, friendly rivalry, the moment before the result. Bright daytime lab, white walls. No text, no letters, no numbers, no logos.",
+      "source_of": null,
+      "status": "redraw"
+    },
+    {
+      "id": "og_03",
+      "role": "og",
+      "path": "assets/og/03.jpg",
+      "size": [
+        1200,
+        675
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": null,
+      "source_of": "cover_03",
+      "status": "redraw"
+    },
+    {
+      "id": "cover_04",
+      "role": "cover",
+      "embedded_in": "04_deep_learning.html",
+      "key": ".cover .frame[data-img=\"cover_04\"]",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": "Website top cover illustration, wide 16:9. Match the art style of the attached reference images exactly. Scene: a saddle-shaped surface model and two swivel chairs. Metaphor: a marble resting on top of the saddle, and two light dots chasing each other in a circle. All four characters together: chibi scientist with thin teal rectangular glasses and spiky black hair with one white streak, white lab coat over black vest and tie; girl researcher with long pink hair in two round buns and a navy streak, white lab coat over lavender hoodie; anthropomorphic fruit fly researcher with big red compound eyes and a blue helmet, on the left facing right; boxy beige retro CRT-monitor robot with a dark green screen face and an abacus-bead antenna, on the right facing left. Composition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple. Mood: curious, friendly rivalry, the moment before the result. Bright daytime lab, white walls. No text, no letters, no numbers, no logos.",
+      "source_of": null,
+      "status": "redraw"
+    },
+    {
+      "id": "og_04",
+      "role": "og",
+      "path": "assets/og/04.jpg",
+      "size": [
+        1200,
+        675
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": null,
+      "source_of": "cover_04",
+      "status": "redraw"
+    },
+    {
+      "id": "cover_05",
+      "role": "cover",
+      "embedded_in": "05_rendering.html",
+      "key": ".cover .frame[data-img=\"cover_05\"]",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": "Website top cover illustration, wide 16:9. Match the art style of the attached reference images exactly. Scene: a small photo stage in a bright room with a dark curtain behind it. Metaphor: a white sphere lit from one side, with swirling smoke particles curling above it. All four characters together: chibi scientist with thin teal rectangular glasses and spiky black hair with one white streak, white lab coat over black vest and tie; girl researcher with long pink hair in two round buns and a navy streak, white lab coat over lavender hoodie; anthropomorphic fruit fly researcher with big red compound eyes and a blue helmet, on the left facing right; boxy beige retro CRT-monitor robot with a dark green screen face and an abacus-bead antenna, on the right facing left. Composition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple. Mood: curious, friendly rivalry, the moment before the result. Bright daytime lab, white walls. No text, no letters, no numbers, no logos.",
+      "source_of": null,
+      "status": "redraw"
+    },
+    {
+      "id": "og_05",
+      "role": "og",
+      "path": "assets/og/05.jpg",
+      "size": [
+        1200,
+        675
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": null,
+      "source_of": "cover_05",
+      "status": "redraw"
+    },
+    {
+      "id": "cover_06",
+      "role": "cover",
+      "embedded_in": "06_factory.html",
+      "key": ".cover .frame[data-img=\"cover_06\"]",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": "Website top cover illustration, wide 16:9. Match the art style of the attached reference images exactly. Scene: a factory visitor room with a scale model of a cement kiln. Metaphor: a warm color gradient spreading along the kiln model, and conveyor belts shaped like in-and-out arrows. All four characters together: chibi scientist with thin teal rectangular glasses and spiky black hair with one white streak, white lab coat over black vest and tie; girl researcher with long pink hair in two round buns and a navy streak, white lab coat over lavender hoodie; anthropomorphic fruit fly researcher with big red compound eyes and a blue helmet, on the left facing right; boxy beige retro CRT-monitor robot with a dark green screen face and an abacus-bead antenna, on the right facing left. Composition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple. Mood: curious, friendly rivalry, the moment before the result. Bright daytime lab, white walls. No text, no letters, no numbers, no logos.",
+      "source_of": null,
+      "status": "redraw"
+    },
+    {
+      "id": "og_06",
+      "role": "og",
+      "path": "assets/og/06.jpg",
+      "size": [
+        1200,
+        675
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": null,
+      "source_of": "cover_06",
+      "status": "redraw"
+    },
+    {
+      "id": "cover_07",
+      "role": "cover",
+      "embedded_in": "07_fish_market.html",
+      "key": ".cover .frame[data-img=\"cover_07\"]",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": "Website top cover illustration, wide 16:9. Match the art style of the attached reference images exactly. Scene: a fish market sorting table with a small conveyor. Metaphor: fish on the conveyor under a transparent bowl formed by three glowing axes. Sia and Moa cheer in the background (last episode). All four characters together: chibi scientist with thin teal rectangular glasses and spiky black hair with one white streak, white lab coat over black vest and tie; girl researcher with long pink hair in two round buns and a navy streak, white lab coat over lavender hoodie; anthropomorphic fruit fly researcher with big red compound eyes and a blue helmet, on the left facing right; boxy beige retro CRT-monitor robot with a dark green screen face and an abacus-bead antenna, on the right facing left. Composition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple. Mood: curious, friendly rivalry, the moment before the result. Bright daytime lab, white walls. No text, no letters, no numbers, no logos.",
+      "source_of": null,
+      "status": "redraw"
+    },
+    {
+      "id": "og_07",
+      "role": "og",
+      "path": "assets/og/07.jpg",
+      "size": [
+        1200,
+        675
+      ],
+      "characters": [
+        "doc",
+        "asst",
+        "fly",
+        "jupanbot"
+      ],
+      "robot": "jupanbot-v2",
+      "prompt_en": null,
+      "source_of": "cover_07",
+      "status": "redraw"
+    }
+  ],
+  "updated": "2026-11-19",
+  "note": "표지는 아직 임시(캐릭터 그림 배치)입니다. docs/COVER_PROMPTS_vector_calculus_lab.md로 받은 그림을 assets/cover/에 넣고 status를 ok로 바꿉니다."
+}
