@@ -24,6 +24,15 @@ SERIES = [
 E = html.escape
 
 
+def load_edu():
+    spec = importlib.util.spec_from_file_location('edu', os.path.join(TOOLS, 'content', 'edu.py'))
+    m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+    return m.ROOM, m.AI
+
+
+EDU, AI = load_edu()
+
+
 def load(name):
     spec = importlib.util.spec_from_file_location(name, os.path.join(TOOLS, 'content', name + '.py'))
     m = importlib.util.module_from_spec(spec)
@@ -41,7 +50,11 @@ def say(who, mood, text):
 
 
 def nav(pg):
-    links = ''.join(f'<a href="#{a}">{t}</a>' for a, t in pg.get('nav', []))
+    nv = list(pg.get('nav', []))
+    if pg.get('key') in AI:
+        i = next((k for k, (a, _) in enumerate(nv) if a == 'duel'), len(nv))
+        nv.insert(i, ('aicheck', 'AI 판단'))
+    links = ''.join(f'<a href="#{a}">{t}</a>' for a, t in nv)
     return f'<nav class="top" aria-label="이 페이지 차례"><a class="logo" href="index.html">∇ 연구실</a>{links}<a href="#kg">지식 색인</a></nav>'
 
 
@@ -100,24 +113,47 @@ def bigpic(pg):
 
 
 def room(r):
+    ed = EDU.get(r['no'], {})
     tags = ''.join(f'<span class="tag {c}">{E(t)}</span>' for c, t in r['tags'])
     deep = f'<p class="deepnote">{r["deep"]}</p>' if r.get('deep') else ''
     w = r['why']
     a = r['asst']
-    parts = ''.join(f'<tr><td>{p}</td><td>{m}</td></tr>' for p, m in a['parts'])
+    reads = ed.get('reads')
+    if reads:
+        rows = [(p, reads[i] if i < len(reads) else '', m) for i, (p, m) in enumerate(a['parts'])] + list(ed.get('extra', []))
+        parts = ''.join(f'<tr><td>{p}</td><td>{rd}</td><td>{m}</td></tr>' for p, rd, m in rows)
+        thead = '<tr><th>식 조각</th><th>읽는 법</th><th>뜻</th></tr>'
+    else:
+        parts = ''.join(f'<tr><td>{p}</td><td>{m}</td></tr>' for p, m in a['parts'])
+        thead = '<tr><th>식 조각</th><th>뜻</th></tr>'
+    first = f'<p class="sayfirst"><b>말로 먼저:</b> {ed["say"]}</p>' if ed.get('say') else ''
     duo = f'''<div class="duo"><div class="whybox"><h3>왜 이 방법을 쓰나</h3><p><b>문제:</b> {w[0]}</p><p><b>앞 방법의 한계:</b> {w[1]}</p><p><b>해법:</b> {w[2]}</p><div class="easy"><b>쉽게 말하면</b> {w[3]}</div></div>
 <div class="mathbox"><h3>수학 수식을 어려워하는 조수가 대신 물어봅니다</h3><div class="asq">{img('asst', 'shock', '', 52)}<p><b>조수:</b> {a['q']}</p></div>
-<p class="school">학교 수학으로 보면: {a['school']}</p><div class="eq">{a['eq']}</div><table><tr><th>식 조각</th><th>뜻</th></tr>{parts}</table>
-<div class="num"><b>숫자로 한 번 해 보기</b><br>{a['num']}</div><div class="asq">{img('asst', 'spark', '', 52)}<p><b>조수:</b> {a['comment']}</p></div></div></div>'''
+<p class="school">학교 수학으로 보면: {a['school']}</p>{first}<details class="eqfold"><summary>식으로 보기 — 기호 읽는 법 포함</summary><div class="eq">{a['eq']}</div><table>{thead}{parts}</table></details>
+<div class="num"><b>숫자로 한 번 해 보기</b><br>{a['num']}{ed.get('num_add', '')}</div><div class="asq">{img('asst', 'spark', '', 52)}<p><b>조수:</b> {a['comment']}</p></div></div></div>'''
     pair = f'<div class="pair"><div class="fly"><b>일상으로 치면</b>{r["pair"][0]}</div><div class="nn"><b>{r["pair"][1]}</b>{r["pair"][2]}</div></div>'
-    talk = '<div class="talk">' + ''.join(say(*t) for t in r['talk']) + '</div>'
+    tl = ([('doc', 'board', ed['doc'])] if ed.get('doc') else []) + list(r['talk'])
+    talk = '<div class="talk">' + ''.join(say(*t) for t in tl) + '</div>'
     fix = f'<p class="fix">{r["fix"]}</p>' if r.get('fix') else ''
     panel = f'<div class="panel" id="sim-{r["id"]}"><div class="ptitle">실험 · {r["panel"]}</div><div data-mod="{r["mod"]}"></div></div>'
-    ex = f'<div class="explain"><h3>풀이</h3>{"".join("<p>" + p + "</p>" for p in r["explain"])}<p class="lim"><b>이 방의 한계:</b> {r["limit"]}</p></div>'
+    exps = list(r['explain']) + ([ed['explain_add']] if ed.get('explain_add') else [])
+    ex = f'<div class="explain"><h3>풀이</h3>{"".join("<p>" + p + "</p>" for p in exps)}<p class="lim"><b>이 방의 한계:</b> {r["limit"]}</p></div>'
     br = ''.join(f'<div class="bridge {c}"><b>{t}</b> {d}</div>' for c, t, d in r.get('bridge', []))
-    code = f'<details class="codefold"><summary>파이썬 코드로 보면 (몰라도 됩니다)</summary><code>{E(r["code"][0])}</code><p>{r["code"][1]}</p></details>' if r.get('code') else ''
+    cd = r.get('code') or ed.get('code')
+    code = f'<details class="codefold"><summary>파이썬 코드로 같은 값 확인 (몰라도 됩니다)</summary><code>{E(cd[0])}</code><p>{cd[1]}</p></details>' if cd else ''
     return f'''<section class="level" id="room-{r['no']}"><div class="lvhead"><div class="hex">{r['no']}</div><div><h2>{r['title']}</h2><div class="tags">{tags}</div></div></div>{deep}
 <p>{r['lead']}</p>{duo}{pair}{fix}{talk}{panel}{ex}{br}{code}<div class="quiz" data-quiz="q{r['no']}"></div></section>'''
+
+
+def aicheck(pg):
+    a = AI.get(pg['key'])
+    if not a: return ''
+    qs = ''.join(f'<li>{q}</li>' for q in a['qs'])
+    return f'''<section class="level" id="aicheck"><div class="lvhead"><div class="hex">AI</div><div><h2>AI 판단 코너 — 이 답을 그대로 믿어도 될까</h2><div class="tags"><span class="tag m">방법: 결과 확인하기</span><span class="tag d">일상: 보고서 검토</span></div></div></div>
+<p>계산은 프로그램과 AI가 1초 만에 해 줍니다. 우리에게 필요한 힘은 그 결과가 맞는지 따져 보는 힘입니다. 아래는 주판봇이 AI에게서 받아 온 답입니다.</p>
+<div class="talk">{say('robo', 'chart', 'AI가 이렇게 답했어요! ' + a['claim'])}{say('doc', 'board', '바로 믿기 전에 두 가지만 확인해 볼까요? 틀려도 괜찮아요. 확인하는 습관이 목적입니다.')}</div>
+<div class="explain"><h3>확인 질문</h3><ol>{qs}</ol></div>
+<details><summary>확인해 보기 (먼저 생각해 본 뒤 여세요)</summary><p>{a['ans']}</p></details></section>'''
 
 
 def duel(pg):
@@ -260,6 +296,7 @@ def render(pg, S, css, core, mods):
         body += [three(pg), castsec(pg), why(pg), bigpic(pg)]
         body += [room(r) for r in pg.get('rooms', [])]
         if pg.get('extra_after_rooms'): body.append(pg['extra_after_rooms'])
+        body.append(aicheck(pg))
         if pg.get('duel'): body.append(duel(pg))
         body += [summary(pg), outro(pg)]
     body += [kg_section(), export_section(pg)]

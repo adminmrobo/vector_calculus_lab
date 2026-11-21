@@ -43,6 +43,7 @@
 python3 tools/build.py --sprites /path/to/sprites96.json
 ```
 
+- `tools/content/edu.py` — 쉬운 말 보강: 방마다 박사의 현장 질문, 수식 앞 "말로 먼저", 식 조각 읽는 법, 손계산 보강, 편마다 AI 판단 코너 (문구만 고칠 때 이 파일)
 - `tools/lab.css` · `tools/lab_core.js` · `tools/lab_mods.js` — 디자인, 공용 모듈, 실험 패널 26종
 - `docs/PLAN_v2.1.md` — 기획안(페르소나 평가 반영)
 - `docs/COVER_PROMPTS_vector_calculus_lab.md` — 표지 9장 지시문

@@ -27,7 +27,7 @@ MODS.slope=function(el){H(el,'<div class="ctrl">'+slider('sl-x','점의 위치 x
     c.strokeStyle='#13733a';c.lineWidth=2.5;c.beginPath();for(var t=-2.4;t<=2.4;t+=0.02){var px=P.X(t),py=P.Y(t*t);t===-2.4?c.moveTo(px,py):c.lineTo(px,py);}c.stroke();
     var m=2*x;c.strokeStyle='#c42a6e';c.lineWidth=2;c.beginPath();c.moveTo(P.X(x-1.2),P.Y(x*x-1.2*m));c.lineTo(P.X(x+1.2),P.Y(x*x+1.2*m));c.stroke();
     c.fillStyle='#c93030';c.beginPath();c.arc(P.X(x),P.Y(x*x),6,0,7);c.fill();stamp(c,W,'설명용 그림');
-    $('#sl-xv',el).textContent=fmt(x,1);ro.innerHTML='점 ('+fmt(x,1)+', '+fmt(x*x,2)+')에서 접선의 기울기 = 2 × '+fmt(x,1)+' = <b>'+fmt(m,1)+'</b> · 오른쪽으로 한 칸 가면 높이가 '+fmt(m,1)+'만큼 '+(m>=0?'오릅니다':'내려갑니다')+'.';}
+    $('#sl-xv',el).textContent=fmt(x,1);ro.innerHTML='점 ('+fmt(x,1)+', '+fmt(x*x,2)+')에서 접선의 기울기 = 2 × '+fmt(x,1)+' = <b>'+fmt(m,1)+'</b> · 오른쪽으로 한 걸음 가면 높이가 '+fmt(m,1)+'만큼 '+(m>=0?'오릅니다':'내려갑니다')+'.';}
   LOOP.add(cv,function(dt){if(dt===0)draw();});};
 
 /* 방 1: ∇ 도구상자 — 3D 축과 단위벡터 */
@@ -40,7 +40,7 @@ MODS.nabla3d=function(el){var on={x:true,y:true,z:true};H(el,'<div class="ctrl">
     var defs='<defs>'+['x','y','z'].map(function(k){return '<marker id="ah'+k+'" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="'+col[k]+'"/></marker>'}).join('')+'</defs>';
     sv.innerHTML=defs+s+'<text x="12" y="22" font-size="13" fill="#5b6874">길이 1인 화살표 세 개 = 방향을 가리키는 자</text>';
     var parts=[];if(on.x)parts.push('x̂·(x쪽 기울기)');if(on.y)parts.push('ŷ·(y쪽 기울기)');if(on.z)parts.push('ẑ·(z쪽 기울기)');
-    ro.innerHTML='∇ = '+(parts.join(' + ')||'(비어 있음)')+'<br>켜 둔 방향 '+parts.length+'개 → 방향별 기울기 '+parts.length+'개를 한 줄로 묶습니다. 바닥 지도(2칸)라면 ẑ를 끄면 됩니다.';}
+    ro.innerHTML='∇ = '+(parts.join(' + ')||'(비어 있음)')+'<br>켜 둔 방향 '+parts.length+'개 → 방향별 기울기 '+parts.length+'개를 한 줄로 묶습니다. 바닥 지도(두 방향)라면 ẑ를 끄면 됩니다.';}
   $$('[data-ax]',el).forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.ax;on[k]=!on[k];b.setAttribute('aria-pressed',on[k]);draw();});});draw();};
 
 /* 방 2: 그래디언트 */
@@ -64,7 +64,7 @@ MODS.div=function(el){var R=2.5,b=[0.8,0.6],hs=0.6,mode='src';var FS={src:functi
     c.strokeStyle='#13733a';c.lineWidth=2.5;c.strokeRect(P.X(b[0]-hs),P.Y(b[1]+hs),2*hs*P.s,2*hs*P.s);
     var nOut=0,nIn=0;[[1,0],[-1,0],[0,1],[0,-1]].forEach(function(nv){for(var k=-1;k<=1;k++){var x=b[0]+nv[0]*hs+(nv[1]?k*hs*0.6:0),y=b[1]+nv[1]*hs+(nv[0]?k*hs*0.6:0),v=F(x,y),d=v[0]*nv[0]+v[1]*nv[1];
       if(d>1e-6)nOut++;else if(d<-1e-6)nIn++;arrow(c,P.X(x),P.Y(y),P.X(x)+nv[0]*d*P.s*0.25,P.Y(y)-nv[1]*d*P.s*0.25,d>0?'#c93030':'#13733a',2.5,7);}});stamp(c,W,'설명용 그림');
-    var fl=flux(F),area=4*hs*hs;ro.innerHTML='상자 겉면에서 밖으로 나가는 화살표 '+nOut+'개 · 안으로 들어오는 화살표 '+nIn+'개 (빨강 = 나감, 초록 = 들어옴)<br>나가는 양 − 들어오는 양 = <b>'+fmt(fl,2)+'</b> · 상자 넓이 '+fmt(area,2)+'로 나누면 <b>'+fmt(fl/area,2)+'</b> = 발산 '+DV[mode]+' (바닥 2칸 그림이라 2. 공간 3칸이면 (x, y, z)의 발산은 3)';}
+    var fl=flux(F),area=4*hs*hs;ro.innerHTML='상자 겉면에서 밖으로 나가는 화살표 '+nOut+'개 · 안으로 들어오는 화살표 '+nIn+'개 (빨강 = 나감, 초록 = 들어옴)<br>나가는 양 − 들어오는 양 = <b>'+fmt(fl,2)+'</b> · 상자 넓이 '+fmt(area,2)+'로 나누면 <b>'+fmt(fl/area,2)+'</b> = 발산 '+DV[mode]+' (바닥 두 방향 그림이라 2. 세 방향 공간이면 (x, y, z)의 발산은 3)';}
   LOOP.add(cv,function(dt){if(dt===0)draw();});};
 
 /* 방 4: 회전 */
@@ -123,12 +123,12 @@ MODS.divthm=function(el){var R=2.5,hs=1,k=0,run=false;H(el,'<div class="ctrl">'+
   LOOP.add(cv,draw);};
 
 /* 방 9: 스토크스 */
-MODS.stokes=function(el){var R=2.5,r=1,k=0,run=false;H(el,'<div class="ctrl">'+slider('sk-r','원 반지름',0.3,2,0.1,1)+'<button type="button" class="bt primary" id="sk-go">테두리 한 칸씩 더하기</button></div>');var cv=canvasBlock(el,'원 테두리와 안쪽 바람개비',340),ro=out(el);
+MODS.stokes=function(el){var R=2.5,r=1,k=0,run=false;H(el,'<div class="ctrl">'+slider('sk-r','원 반지름',0.3,2,0.1,1)+'<button type="button" class="bt primary" id="sk-go">테두리 한 조각씩 더하기</button></div>');var cv=canvasBlock(el,'원 테두리와 안쪽 바람개비',340),ro=out(el);
   var F=function(x,y){return [-y,x]},N=72;$('#sk-r',el).addEventListener('input',function(){r=+this.value;k=0;run=false;draw(0);});$('#sk-go',el).addEventListener('click',function(){k=REDUCE?N:0;run=!REDUCE;draw(0);});
   function draw(dt){if(run){k+=dt*36;if(k>=N){k=N;run=false;}}var W=fit(cv,340),Hh=340,c=cv.getContext('2d'),P=plane(W,Hh,R);c.clearRect(0,0,W,Hh);grid(c,W,Hh);axes(c,P,W,Hh);field(c,P,W,Hh,F,R,'rgba(30,85,200,.35)',0.18,11);
     c.fillStyle='rgba(163,92,0,.08)';c.beginPath();c.arc(P.X(0),P.Y(0),r*P.s,0,7);c.fill();var sum=0;for(var i=0;i<N;i++){var a0=2*Math.PI*i/N,a1=2*Math.PI*(i+1)/N,x0=r*Math.cos(a0),y0=r*Math.sin(a0),x1=r*Math.cos(a1),y1=r*Math.sin(a1),mx=(x0+x1)/2,my=(y0+y1)/2,v=F(mx,my),d=v[0]*(x1-x0)+v[1]*(y1-y0);
       c.strokeStyle=i<k?'#c93030':'#d5dbe2';c.lineWidth=4;c.beginPath();c.moveTo(P.X(x0),P.Y(y0));c.lineTo(P.X(x1),P.Y(y1));c.stroke();if(i<k)sum+=d;}
-    stamp(c,W,'설명용 그림');ro.innerHTML='안쪽 바람개비의 합 = 회전 2 × 원 넓이 '+fmt(Math.PI*r*r,2)+' = <b>'+fmt(2*Math.PI*r*r,2)+'</b><br>테두리를 따라 더한 값('+Math.floor(k)+'/'+N+'칸) = <b>'+fmt(sum,2)+'</b>'+(k>=N?' → 같습니다. 반지름 1이면 둘 다 2π ≈ 6.28':'');}
+    stamp(c,W,'설명용 그림');ro.innerHTML='안쪽 바람개비의 합 = 회전 2 × 원 넓이 '+fmt(Math.PI*r*r,2)+' = <b>'+fmt(2*Math.PI*r*r,2)+'</b><br>테두리를 따라 더한 값('+Math.floor(k)+'/'+N+'조각) = <b>'+fmt(sum,2)+'</b>'+(k>=N?' → 같습니다. 반지름 1이면 둘 다 2π ≈ 6.28':'');}
   LOOP.add(cv,draw);};
 
 /* 두 항등식 */
@@ -258,7 +258,7 @@ MODS.score=function(el){var R=3,N=300,pts=[],r0=rng(5),t=0,run=false;var C=[[-1.
 
 /* 방 19: 가마 온도 퍼짐 (2D 격자) */
 MODS.kiln=function(el){var nx=11,ny=7,T=[],run=false,steps=0;function reset(){T=[];for(var j=0;j<ny;j++){var row=[];for(var i=0;i<nx;i++)row.push(900);T.push(row);}T[3][5]=880;T[1][2]=960;T[5][8]=850;steps=0;}reset();
-  H(el,'<div class="ctrl"><button type="button" class="bt primary" id="kl-go">시간 흘리기</button><button type="button" class="bt" id="kl-rs">처음으로</button><span class="glabel">칸을 누르면 그 칸이 30℃ 데워집니다</span></div>');var cv=canvasBlock(el,'가마 단면 온도 격자',300),ro=out(el);
+  H(el,'<div class="ctrl"><button type="button" class="bt primary" id="kl-go">시간 흘리기</button><button type="button" class="bt" id="kl-rs">처음으로</button><span class="glabel">자리를 누르면 그 자리가 30℃ 데워집니다</span></div>');var cv=canvasBlock(el,'가마 단면 온도 격자',300),ro=out(el);
   function step(){var a=0.2,N=T.map(function(r){return r.slice()});for(var j=0;j<ny;j++)for(var i=0;i<nx;i++){var s=0,c=0;[[1,0],[-1,0],[0,1],[0,-1]].forEach(function(d){var x=i+d[0],y=j+d[1];if(x>=0&&x<nx&&y>=0&&y<ny){s+=T[y][x];c++;}});N[j][i]=T[j][i]+a*(s-c*T[j][i]);}T=N;steps++;}
   $('#kl-go',el).addEventListener('click',function(){run=!run;this.textContent=run?'멈추기':'시간 흘리기';if(REDUCE){for(var i=0;i<20;i++)step();run=false;draw(0);}});$('#kl-rs',el).addEventListener('click',function(){reset();run=false;$('#kl-go',el).textContent='시간 흘리기';draw(0);});
   cv.addEventListener('pointerdown',function(e){var r=cv.getBoundingClientRect(),i=Math.floor((e.clientX-r.left)/r.width*nx),j=Math.floor((e.clientY-r.top)/300*ny);if(T[j]&&T[j][i]!==undefined){T[j][i]+=30;draw(0);}});
@@ -266,7 +266,7 @@ MODS.kiln=function(el){var nx=11,ny=7,T=[],run=false,steps=0;function reset(){T=
     for(var j=0;j<ny;j++)for(var i=0;i<nx;i++){var u=Math.max(0,Math.min(1,(T[j][i]-840)/130));c.fillStyle='rgb('+Math.round(255)+','+Math.round(235-150*u)+','+Math.round(200-170*u)+')';c.fillRect(i*cw,j*ch,cw-1,ch-1);
       c.fillStyle='#16212b';c.font='11px sans-serif';c.fillText(Math.round(T[j][i]),i*cw+4,j*ch+ch/2+4);}
     c.strokeStyle='#1e55c8';c.lineWidth=3;c.strokeRect(5*cw,3*ch,cw,ch);stamp(c,W,'가상 수치');var me=T[3][5],av=(T[2][5]+T[4][5]+T[3][4]+T[3][6])/4;
-    ro.innerHTML='파란 테두리 칸 '+fmt(me,1)+'℃ · 둘레 네 칸 평균 '+fmt(av,1)+'℃ · 차이(라플라시안 방향) <b>'+(av-me>=0?'+':'')+fmt(av-me,1)+'</b> → '+(av-me>0.05?'데워집니다':av-me<-0.05?'식습니다':'거의 그대로입니다')+' · 시간 '+steps+'칸';}
+    ro.innerHTML='파란 테두리 자리 '+fmt(me,1)+'℃ · 둘레 네 자리 평균 '+fmt(av,1)+'℃ · 차이(라플라시안 방향) <b>'+(av-me>=0?'+':'')+fmt(av-me,1)+'</b> → '+(av-me>0.05?'데워집니다':av-me<-0.05?'식습니다':'거의 그대로입니다')+' · 시간 '+steps+'단위';}
   LOOP.add(cv,draw);};
 
 /* 방 20: 물질 수지 */
