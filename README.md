@@ -44,6 +44,7 @@ python3 tools/build.py --sprites /path/to/sprites96.json
 ```
 
 - `tools/content/edu.py` — 쉬운 말 보강: 방마다 박사의 현장 질문, 수식 앞 "말로 먼저", 식 조각 읽는 법, 손계산 보강, 편마다 AI 판단 코너 (문구만 고칠 때 이 파일)
+- `tools/content/easy.py` — 연구실 확장 2차: 조수 수식 상자의 「숫자로 한 번 해 보기」를 방마다 번호 단계 3개로(식 없이 숫자와 말로, 모두 다시 계산), 원래 식으로 푼 숫자는 「식으로 보기」 접기 안으로
 - `tools/lab.css` · `tools/lab_core.js` · `tools/lab_mods.js` — 디자인, 공용 모듈, 실험 패널 26종
 - `docs/PLAN_v2.1.md` — 기획안(페르소나 평가 반영)
 - `docs/COVER_PROMPTS_vector_calculus_lab.md` — 표지 9장 지시문

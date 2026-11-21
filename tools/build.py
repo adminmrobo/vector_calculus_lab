@@ -22,6 +22,8 @@ SERIES = [
     ('07_fish_market.html', '⑦편', '생선 분류 최적화'),
 ]
 E = html.escape
+sys.path.insert(0, os.path.join(TOOLS, 'content'))
+from easy import EASY  # 숫자로 한 번 해 보기 — 번호 단계 (연구실 확장 2차)
 
 
 def load_edu():
@@ -127,10 +129,19 @@ def room(r):
         parts = ''.join(f'<tr><td>{p}</td><td>{m}</td></tr>' for p, m in a['parts'])
         thead = '<tr><th>식 조각</th><th>뜻</th></tr>'
     first = f'<p class="sayfirst"><b>말로 먼저:</b> {ed["say"]}</p>' if ed.get('say') else ''
+    ez = EASY.get((r.get('_pg'), r['no']))
+    if ez:
+        add = f"<li>{ed['num_add'].strip()}</li>" if ed.get('num_add') and r['no'] != 1 else ''
+        steps = '<ol>' + ''.join(f'<li>{t}</li>' for t in ez[1]) + add + '</ol>'
+        numfold = f'<p class="numx"><b>식으로 푼 숫자:</b> {a["num"]}</p>'
+        if not ed.get('say'):
+            first = f'<p class="sayfirst"><b>말로 먼저:</b> {ez[0]}</p>'
+    else:
+        steps, numfold = '<br>' + a['num'] + ed.get('num_add', ''), ''
     duo = f'''<div class="duo"><div class="whybox"><h3>왜 이 방법을 쓰나</h3><p><b>문제:</b> {w[0]}</p><p><b>앞 방법의 한계:</b> {w[1]}</p><p><b>해법:</b> {w[2]}</p><div class="easy"><b>쉽게 말하면</b> {w[3]}</div></div>
 <div class="mathbox"><h3>수학 수식을 어려워하는 조수가 대신 물어봅니다</h3><div class="asq">{img('asst', 'shock', '', 52)}<p><b>조수:</b> {a['q']}</p></div>
-<p class="school">학교 수학으로 보면: {a['school']}</p>{first}<details class="eqfold"><summary>식으로 보기 — 기호 읽는 법 포함</summary><div class="eq">{a['eq']}</div><table>{thead}{parts}</table></details>
-<div class="num"><b>숫자로 한 번 해 보기</b><br>{a['num']}{ed.get('num_add', '')}</div><div class="asq">{img('asst', 'spark', '', 52)}<p><b>조수:</b> {a['comment']}</p></div></div></div>'''
+<p class="school">학교 수학으로 보면: {a['school']}</p>{first}<div class="num"><b>숫자로 한 번 해 보기</b>{steps}</div><details class="eqfold"><summary>식으로 보기 — 기호 읽는 법 포함 (몰라도 됩니다)</summary><div class="eq">{a['eq']}</div><table>{thead}{parts}</table>{numfold}</details>
+<div class="asq">{img('asst', 'spark', '', 52)}<p><b>조수:</b> {a['comment']}</p></div></div></div>'''
     pair = f'<div class="pair"><div class="fly"><b>일상으로 치면</b>{r["pair"][0]}</div><div class="nn"><b>{r["pair"][1]}</b>{r["pair"][2]}</div></div>'
     tl = ([('doc', 'board', ed['doc'])] if ed.get('doc') else []) + list(r['talk'])
     talk = '<div class="talk">' + ''.join(say(*t) for t in tl) + '</div>'
@@ -294,7 +305,7 @@ def render(pg, S, css, core, mods):
         body.append(pg['custom_body'])
     else:
         body += [three(pg), castsec(pg), why(pg), bigpic(pg)]
-        body += [room(r) for r in pg.get('rooms', [])]
+        body += [room(dict(r, _pg=pg['key'])) for r in pg.get('rooms', [])]
         if pg.get('extra_after_rooms'): body.append(pg['extra_after_rooms'])
         body.append(aicheck(pg))
         if pg.get('duel'): body.append(duel(pg))

@@ -187,3 +187,7 @@ footer .nextprev a{font-size:16px}
 #aicheck details{background:var(--amber-soft)}
 .eqfold{background:#fff;border-color:#e5cdef}
 .eqfold summary{color:var(--stain)}
+/* 연구실 확장 2차: 숫자는 번호 단계로, 식으로 푼 숫자는 접기 안으로 */
+body{line-height:1.8}
+.mathbox .num ol{margin:6px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+.eqfold .numx{font-size:14px;margin:6px 0 0}
